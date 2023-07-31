@@ -1,29 +1,14 @@
-import { nanoid } from 'nanoid';
-export const addTask = (name, number) => {
-  return {
-    type: 'tasks/addContact',
-    payload: {
-      id: nanoid(),
-      name,
-      number,
-    },
-  };
-};
-export const deleteTask = taskId => {
-  return {
-    type: 'tasks/deleteContact',
-    payload: taskId,
-  };
-};
-export const toggleCompleted = taskId => {
-  return {
-    type: 'tasks/toggleCompleted',
-    payload: taskId,
-  };
-};
-export const setStatusFilter = value => {
-  return {
-    type: 'filters/setStatusFilter',
-    payload: value,
-  };
-};
+export const addContact = (contact) => ({
+  type: 'ADD_CONTACT',
+  payload: contact,
+});
+
+export const deleteContact = (contactId) => ({
+  type: 'DELETE_CONTACT',
+  payload: contactId,
+});
+
+export const setFilter = (filter) => ({
+  type: 'SET_FILTER',
+  payload: filter,
+});
