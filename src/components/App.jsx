@@ -5,12 +5,11 @@ import { Container } from 'components/Container/Container';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
-import { addContact, deleteContact, setFilter } from 'redux/contacts/actions';
+import { addContact, deleteContact } from 'redux/store';
 import style from 'components/Apx.module.css';
 
 const App = () => {
   const contacts = useSelector((state) => state.contacts);
-  const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
   const handleFormSubmit = (contact) => {
@@ -31,27 +30,19 @@ const App = () => {
     dispatch(deleteContact(contactId));
   };
 
-  const handleFilterChange = (event) => {
-    dispatch(setFilter(event.target.value));
-  };
-
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
   return (
     <Container>
       <div className={style.container}>
         <ContactForm onSubmit={handleFormSubmit} />
         <h2>Contacts</h2>
         {contacts.length > 0 ? (
-          <Filter value={filter} onChangeFilter={handleFilterChange} />
+          <Filter />
         ) : (
           alert('Your phonebook is empty. Add first contact!')
         )}
         {contacts.length > 0 && (
           <ContactList
-            contacts={filteredContacts}
+            contacts={contacts} // Передаємо контакти у ContactList
             removeContact={handleContactDelete}
           />
         )}
