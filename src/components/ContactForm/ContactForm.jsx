@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import style from 'components/ContactForm/ContactForm.module.css';
 
-export const ContactForm = ({ onSubmit }) => {
+const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -71,3 +71,5 @@ export const ContactForm = ({ onSubmit }) => {
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default ContactForm;

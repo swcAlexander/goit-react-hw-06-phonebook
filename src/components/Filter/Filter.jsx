@@ -1,20 +1,20 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setContactFilter } from 'redux/store';
+import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
-
-export const Filter = () => {
-  const filter = useSelector((state) => state.filter)
-  const dispatch = useDispatch();
-  const handleFilterChange = (event) => {
-    dispatch(setContactFilter(event.target.value))
-  }
+export const Filter = ({ value, onChangeFilter }) => {
+  const inputId = nanoid(10);
   return (
     <div>
-      <label htmlFor="filterInput" >
+      <label htmlFor="" id={inputId}>
         Find filter by name
       </label>
-      <input type="text" value={filter} id="filterInput" onChange={handleFilterChange} />
+      <input type="text" value={value} id={inputId} onChange={onChangeFilter} />
     </div>
   );
+};
+
+Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChangeFilter: PropTypes.func.isRequired,
 };

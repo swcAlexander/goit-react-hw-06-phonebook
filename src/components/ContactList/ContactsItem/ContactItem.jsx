@@ -14,4 +14,4 @@ export const ContactItem = ({ name, number }) => {
 ContactItem.propTypes = {
   name: Proptypes.string.isRequired,
   number: Proptypes.string.isRequired,
-}
+};
