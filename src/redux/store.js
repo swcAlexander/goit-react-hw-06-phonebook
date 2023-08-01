@@ -9,9 +9,16 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
+const costomMiddle = (state) => {
+  return (next) => {
+    return (action) => {
+      return next(action)
+    }
+  }
+}
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: [costomMiddle],
 });
 
 export const persistor = persistStore(store);
